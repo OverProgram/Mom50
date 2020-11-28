@@ -1,7 +1,10 @@
 import pygame as pg
 from pathlib import Path
 
+from Board import Board
+
 RESOURCE_FOLDER = Path(__file__).parent / "resources"
+
 
 def main():
     pg.init()
@@ -10,18 +13,13 @@ def main():
     pg.display.set_caption('Happy 50th birthday')
     font = pg.font.SysFont('DejaVu Sans', 30)
 
-    board = pg.image.load(str(RESOURCE_FOLDER / 'board.jpeg'))
+    board = Board(RESOURCE_FOLDER / 'board.jpeg')
     player = pg.image.load(str(RESOURCE_FOLDER / 'pawn.jpeg'))
+    player_locations = board.get_player_locations()
 
-    spaces_per_line = board.get_size()[0] / player.get_size()[0]
-
-    screen = pg.display.set_mode(board.get_size())
-
-    cube_results = [2, 1] * 18
-    turn = 0
-    space = 0
-
+    screen = pg.display.set_mode(board.image.get_size())
     running = True
+    turn = True
 
     while running:
         for event in pg.event.get():
@@ -29,18 +27,18 @@ def main():
                 running = False
             if event.type == pg.KEYDOWN:
                 if event.key == pg.K_SPACE:
-                    turn += 1
-                    space += cube_results[turn]
+                    turn = True
 
-        player_loc = ((player.get_size()[0] * space) % board.get_size()[0],
-                      player.get_size()[1] * (space // spaces_per_line))
-
-        dice_roll = font.render('{}'.format(cube_results[turn]), False, (0, 0, 0))
+        if turn:
+            if len(player_locations) == 0:
+                running = False
+            else:
+                player_loc = player_locations.pop(0)
+                turn = False
 
         screen.fill((0, 0, 0))
-        screen.blit(board, (0, 0))
+        screen.blit(board.image, (0, 0))
         screen.blit(player, player_loc)
-        screen.blit(dice_roll, (0, 0))
         pg.display.flip()
 
 
