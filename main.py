@@ -1,5 +1,7 @@
 import pygame as pg
+from pathlib import Path
 
+RESOURCE_FOLDER = Path(__file__).parent / "resources"
 
 def main():
     pg.init()
@@ -8,8 +10,8 @@ def main():
     pg.display.set_caption('Happy 50th birthday')
     font = pg.font.SysFont('DejaVu Sans', 30)
 
-    board = pg.image.load('board.jpeg')
-    player = pg.image.load('pawn.jpeg')
+    board = pg.image.load(str(RESOURCE_FOLDER / 'board.jpeg'))
+    player = pg.image.load(str(RESOURCE_FOLDER / 'pawn.jpeg'))
 
     spaces_per_line = board.get_size()[0] / player.get_size()[0]
 
