@@ -1,7 +1,7 @@
 import pygame as pg
 from pathlib import Path
 
-from Board import Board
+from board import Board
 
 RESOURCE_FOLDER = Path(__file__).parent / "resources"
 
