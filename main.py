@@ -2,8 +2,8 @@ import pygame as pg
 from pathlib import Path
 
 from board import Board
-
-RESOURCE_FOLDER = Path(__file__).parent / "resources"
+from clip_manager import ClipManager
+from common import RESOURCE_FOLDER
 
 
 def main():
@@ -15,11 +15,13 @@ def main():
 
     board = Board(RESOURCE_FOLDER / 'board.jpeg')
     player = pg.image.load(str(RESOURCE_FOLDER / 'pawn.jpeg'))
+    clip_manager = ClipManager()
     player_locations = board.get_player_locations()
 
     screen = pg.display.set_mode(board.image.get_size())
     running = True
     turn = True
+    player_loc = None
 
     while running:
         for event in pg.event.get():
@@ -28,6 +30,8 @@ def main():
             if event.type == pg.KEYDOWN:
                 if event.key == pg.K_SPACE:
                     turn = True
+                if event.key == pg.K_p:
+                    clip_manager.play('levi')
 
         if turn:
             if len(player_locations) == 0:
