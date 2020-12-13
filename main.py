@@ -1,5 +1,4 @@
 import pygame as pg
-from pathlib import Path
 
 from board import Board
 from clip_manager import ClipManager

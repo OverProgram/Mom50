@@ -26,5 +26,3 @@ class ClipManager:
             "vlc://quit"
         ]
         subprocess.call(cmd_line)
-
-
