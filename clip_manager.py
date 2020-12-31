@@ -17,6 +17,9 @@ class ClipManager:
         }
 
     def play(self, clip_name):
+        if clip_name is None:
+            return
+
         cmd_line = [
             self.VLC_EXE_PATH,
             "--no-video-title-show",

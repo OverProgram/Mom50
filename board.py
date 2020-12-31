@@ -7,9 +7,15 @@ class Board:
 
     def get_player_locations(self):
         player_size = (10, 10)
-        spaces_per_line = self.image.get_size()[0] / player_size[0]
         return [
-            ((player_size[0] * space) % self.image.get_size()[0],
-             player_size[1] * (space // spaces_per_line))
-            for space in range(10)
+            (187, 592),
+            (354, 559),
+            (258, 447),
+            (264, 336),
+            (370, 357),
+            (480, 340),
+            (595, 367),
+            (640, 508),
+            (438, 586),
+            (510, 400)
         ]
