@@ -26,7 +26,7 @@ def main():
     player_loc = None
 
     clips = [
-        None, 'work', 'malkior', 'noa', 'yishai', 'drori', 'levi', "yoavi", None, "fireworks"
+        None, 'work', 'malkior', 'noa', 'yishai', 'drori', 'levi', 'dudi', "yoavi", "fireworks"
     ]
 
     while running:
